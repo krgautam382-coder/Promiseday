@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises For Betu ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Romantic Dark Purple to Black Gradient */
+            background: radial-gradient(circle at center, #1a0b2e, #000000);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        /* Floating Fireflies Animation */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffeb3b;
+            animation: fly 10s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes fly {
+            0% { opacity: 0; transform: translate(0, 0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translate(100px, -200px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 380px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Card Style */
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            transition: all 0.6s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #d4af37; /* Gold */
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #eee;
+        }
+
+        /* Photo Frame Style */
+        .photo-frame {
+            background: white;
+            padding: 8px 8px 30px 8px; 
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            margin: 0 auto 20px auto;
+            width: 240px;
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 50;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            border-radius: 2px;
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 65, 108, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
+        }
+
+        .hidden { display: none; }
+        .fade-in { animation: fadeIn 1s forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Certificate Styles */
+        .certificate {
+            border: 3px double #d4af37;
+            padding: 20px;
+            background: #fff;
+            color: #222;
+            transform: rotate(2deg);
+            margin-bottom: 20px;
+        }
+
+        /* Heart Beat Animation for Final Step */
+        .heartbeat {
+            font-size: 3rem;
+            color: #ff4b2b;
+            animation: beat 1s infinite;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="firefly-container"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+
+        <div id="step0" class="card">
+            <h1>Promise Day 🤞</h1>
+            <p>Betu, we have made many memories together.<br>Today, I want to make 7 Promises to you for our lifetime.</p>
+            <button class="btn" onclick="startPromises()">Tap to Begin ❤️</button>
+        </div>
+
+        <div id="step1" class="card hidden">
+            <div class="photo-frame">
+                <img src="promise1.jpg" alt="Cheers">
+            </div>
+            <h1>Vow #1: Fun</h1>
+            <p>I promise to be your best friend, your drinking buddy, and your partner in crime. Cheers to life! 🍻</p>
+            <button class="btn" onclick="nextStep(2)">I Accept 🥂</button>
+        </div>
+
+        <div id="step2" class="card hidden">
+            <div class="photo-frame" style="transform: rotate(2deg);">
+                <img src="promise2.jpg" alt="Holding Hands">
+            </div>
+            <h1>Vow #2: Support</h1>
+            <p>I promise to hold your hand through every bump in the road—whether it's a long drive or a tough day. 🤝</p>
+            <button class="btn" onclick="nextStep(3)">Pinky Promise 🤙</button>
+        </div>
+
+        <div id="step3" class="card hidden">
+            <div class="photo-frame" style="transform: rotate(-3deg);">
+                <img src="promise3.jpg" alt="Silly Face">
+            </div>
+            <h1>Vow #3: Patience</h1>
+            <p>I promise to love you even when you eat all the chocolate, make weird faces, or act crazy! 🍫🤪</p>
+            <button class="btn" onclick="nextStep(4)">Done Deal 😂</button>
+        </div>
+
+        <div id="step4" class="card hidden">
+            <div class="photo-frame" style="transform: rotate(1deg);">
+                <img src="promise4.jpg" alt="Beautiful">
+            </div>
+            <h1>Vow #4: Hype Man</h1>
+            <p>I promise to always treat you like my Queen and take 100 photos until you get the perfect angle. 📸💃</p>
+            <button class="btn" onclick="nextStep(5)">Approved ✅</button>
+        </div>
+
+        <div id="step5" class="card hidden">
+            <div class="photo-frame" style="transform: rotate(-2deg);">
+                <img src="promise5.jpg" alt="Eyes">
+            </div>
+            <h1>Vow #5: Connection</h1>
+            <p>I promise to always find my home in your eyes. No matter how much time passes, I will look at you just like this. ✨</p>
+            <button class="btn" onclick="nextStep(6)">Forever ❤️</button>
+        </div>
+
+        <div id="step6" class="card hidden">
+            <div class="photo-frame" style="transform: rotate(3deg);">
+                <img src="promise6.jpg" alt="Comfort">
+            </div>
+            <h1>Vow #6: Comfort</h1>
+            <p>I promise to be your safe space, your pillow, and your strongest support system. Always here for you. 🤗</p>
+            <button class="btn" onclick="nextStep(7)">Always 🏡</button>
+        </div>
+
+        <div id="step7" class="card hidden">
+            <div class="photo-frame">
+                <img src="promise7.jpg" alt="Kiss">
+            </div>
+            <h1>Vow #7: Love</h1>
+            <p>I promise to kiss you goodnight, every single night. I love you, Betu. 😘</p>
+            <button class="btn" onclick="nextStep(8)">Seal the Deal 💋</button>
+        </div>
+
+        <div id="step8" class="card hidden">
+            <div class="certificate">
+                <h2 style="font-family: 'Dancing Script'; margin:0; color:#d4af37;">Certificate of Promise</h2>
+                <p style="color:#333; font-size:0.9rem; margin: 15px 0;">
+                    This certifies that<br><b>Betu (Shivangi)</b><br>owns Guplu's heart and these 7 promises forever.
+                </p>
+                <div style="text-align: right; font-family: 'Dancing Script'; color: #555;">
+                    Signed,<br><b>Your Guplu 🖊️</b>
+                </div>
+            </div>
+            <button class="btn" onclick="nextStep(9)">One Last Wish... 💫</button>
+        </div>
+
+        <div id="step9" class="card hidden">
+            <span class="heartbeat">❤️</span>
+            <h1>Be My Forever</h1>
+            <p style="font-size: 1.2rem; font-weight: 500; margin-top: 20px;">
+                "Hold me so tight...<br>
+                that even air cannot pass between us."
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">I love you, Betu.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Create Fireflies Effect
+        const container = document.getElementById('firefly-container');
+        for(let i=0; i<30; i++) {
+            let f = document.createElement('div');
+            f.className = 'firefly';
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.top = Math.random() * 100 + 'vh';
+            f.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            f.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(f);
+        }
+
+        // Music Start Function
+        function startPromises() {
+            var music = document.getElementById("bgMusic");
+            music.volume = 0.5;
+            music.play().catch(error => console.log("Audio play failed"));
+            nextStep(1);
+        }
+
+        // Navigation Function
+        function nextStep(id) {
+            document.querySelectorAll('.card').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('fade-in');
+            });
+
+            const next = document.getElementById('step' + id);
+            next.classList.remove('hidden');
+            next.classList.add('fade-in');
+        }
+    </script>
+</body>
+</html>
